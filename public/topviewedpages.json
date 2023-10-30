@@ -1,0 +1,62 @@
+[
+    {
+        "path": "api/placeOrder/fetchOrderBook",
+        "count": "2964825"
+    },
+    {
+        "path": "positionAndHoldings/positionBookMtm",
+        "count": "1346515"
+    },
+    {
+        "path": "api/positionAndHoldings/positionBook",
+        "count": "963014"
+    },
+    {
+        "path": "placeOrder/fetchOrderBook",
+        "count": "540515"
+    },
+    {
+        "path": "placeOrder/checkMargin",
+        "count": "534292"
+    },
+    {
+        "path": "limits/getRmsLimits",
+        "count": "415670"
+    },
+    {
+        "path": "api/ScripDetails/getPriceRange",
+        "count": "392310"
+    },
+    {
+        "path": "api/ScripDetails/getScripQuoteDetails",
+        "count": "352722"
+    },
+    {
+        "path": "api/limits/getRmsLimits",
+        "count": "351261"
+    },
+    {
+        "path": "ScripDetails/getFutureToken",
+        "count": "350562"
+    },
+    {
+        "path": "positionAndHoldings/holdings",
+        "count": "346210"
+    },
+    {
+        "path": "placeOrder/fetchTradeBook",
+        "count": "307472"
+    },
+    {
+        "path": "ScripDetails/getTopValues",
+        "count": "241309"
+    },
+    {
+        "path": "customer/accountDetails",
+        "count": "200944"
+    },
+    {
+        "path": "marketWatch/getAllMwScrips",
+        "count": "143144"
+    }
+]

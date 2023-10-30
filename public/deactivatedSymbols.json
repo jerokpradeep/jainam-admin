@@ -1,0 +1,65 @@
+[
+    {
+        "symbol": "SANWARIA",
+        "group_name": "-",
+        "instrument_name": "SANWARIA CONSUMER LIMITED",
+        "exch_segment": "BSE Cash ",
+        "token": "519260"
+    },
+    {
+        "symbol": "VIRTUALS",
+        "group_name": "-",
+        "instrument_name": "VIRTUALSOFT SYSTEMS LTD.",
+        "exch_segment": "BSE Cash ",
+        "token": "531126"
+    },
+    {
+        "symbol": "505KL23",
+        "group_name": "SG",
+        "instrument_name": "SDL KL 5.05% 2023",
+        "exch_segment": "NSE Cash",
+        "token": "22409"
+    },
+    {
+        "symbol": "509TN23",
+        "group_name": "SG",
+        "instrument_name": "SDL TN 5.09% 2023",
+        "exch_segment": "NSE Cash",
+        "token": "22408"
+    },
+    {
+        "symbol": "51BR23",
+        "group_name": "SG",
+        "instrument_name": "SDL BR 5.1% 2023",
+        "exch_segment": "NSE Cash",
+        "token": "22407"
+    },
+    {
+        "symbol": "ATL",
+        "group_name": "BE",
+        "instrument_name": "ALLCARGO TERMINALS LTD",
+        "exch_segment": "NSE Cash",
+        "token": "17780"
+    },
+    {
+        "symbol": "CINELINE",
+        "group_name": "EQ",
+        "instrument_name": "CINELINE INDIA LIMITED",
+        "exch_segment": "NSE Cash",
+        "token": "27161"
+    },
+    {
+        "symbol": "SANWARIA",
+        "group_name": "BZ",
+        "instrument_name": "SANWARIA CONSUMER LIMITED",
+        "exch_segment": "NSE Cash",
+        "token": "46"
+    },
+    {
+        "symbol": "TREL",
+        "group_name": "BE",
+        "instrument_name": "TRANSINDIA REAL ESTATE L",
+        "exch_segment": "NSE Cash",
+        "token": "17802"
+    }
+]

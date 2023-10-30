@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+html {
+  font-family: 'Open Sans', sans-serif !important;
+}
+.primaryColor {
+  color: #070a26;
+}
+.secondaryColor {
+  color: #56585a;
+}
+tr,
+td,
+th {
+  @apply border-collapse p-2;
+}
+/* th {
+  @apply border
+} */
+.activeImg {
+  filter: invert(33%) sepia(89%) saturate(896%) hue-rotate(164deg)
+    brightness(97%) contrast(102%);
+}

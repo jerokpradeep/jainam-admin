@@ -1,0 +1,93 @@
+[
+    {
+        "symbol": "182D220224",
+        "group_name": "TB",
+        "instrument_name": "GOI TBILL 182D",
+        "exch_segment": "NSE Cash",
+        "token": "22/02/24"
+    },
+    {
+        "symbol": "364D220824",
+        "group_name": "TB",
+        "instrument_name": "GOI TBILL 364D",
+        "exch_segment": "NSE Cash",
+        "token": "22/08/24"
+    },
+    {
+        "symbol": "746AP38",
+        "group_name": "SG",
+        "instrument_name": "SDL AP 7.46% 2038",
+        "exch_segment": "NSE Cash",
+        "token": "18216"
+    },
+    {
+        "symbol": "746MZ39",
+        "group_name": "SG",
+        "instrument_name": "SDL MZ 7.46% 2039",
+        "exch_segment": "NSE Cash",
+        "token": "18221"
+    },
+    {
+        "symbol": "747AS28",
+        "group_name": "SG",
+        "instrument_name": "SDL AS 7.47% 2028",
+        "exch_segment": "NSE Cash",
+        "token": "18203"
+    },
+    {
+        "symbol": "747KL37",
+        "group_name": "SG",
+        "instrument_name": "SDL KL 7.47% 2037",
+        "exch_segment": "NSE Cash",
+        "token": "18215"
+    },
+    {
+        "symbol": "749BR31",
+        "group_name": "SG",
+        "instrument_name": "SDL BR 7.49% 2031",
+        "exch_segment": "NSE Cash",
+        "token": "18204"
+    },
+    {
+        "symbol": "749GA33",
+        "group_name": "SG",
+        "instrument_name": "SDL GA 7.49% 2033",
+        "exch_segment": "NSE Cash",
+        "token": "18209"
+    },
+    {
+        "symbol": "749UP34",
+        "group_name": "SG",
+        "instrument_name": "SDL UP 7.49% 2034",
+        "exch_segment": "NSE Cash",
+        "token": "18210"
+    },
+    {
+        "symbol": "91D231123",
+        "group_name": "TB",
+        "instrument_name": "GOI TBILL 91D",
+        "exch_segment": "NSE Cash",
+        "token": "23/11/23"
+    },
+    {
+        "symbol": "ATL",
+        "group_name": "EQ",
+        "instrument_name": "ALLCARGO TERMINALS LTD",
+        "exch_segment": "NSE Cash",
+        "token": "17778"
+    },
+    {
+        "symbol": "CINELINE",
+        "group_name": "BE",
+        "instrument_name": "CINELINE INDIA LIMITED",
+        "exch_segment": "NSE Cash",
+        "token": "27164"
+    },
+    {
+        "symbol": "TREL",
+        "group_name": "EQ",
+        "instrument_name": "TRANSINDIA REAL ESTATE L",
+        "exch_segment": "NSE Cash",
+        "token": "17795"
+    }
+]

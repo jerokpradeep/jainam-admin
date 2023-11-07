@@ -10,6 +10,8 @@ import vendor from "./vendors";
 import version from "./version";
 import auth from "./ssoLogin";
 import reports from "./reports";
+import fileupload from "./fileupload"
+// import commonFunc from "../mixins/commonFunc";
 const store = createStore({
   state: {
     buildDate: "23_08_2023_11_50",
@@ -30,6 +32,7 @@ const store = createStore({
     vendor,
     version,
     auth,
+    fileupload
   },
   mutations: {
     setActivePageTab(state: any, payload: any) {

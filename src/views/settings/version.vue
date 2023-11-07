@@ -2,32 +2,15 @@
   <div class="p-5">
     <div class="bg-white p-4">
       <div class="flex justify-end items-center">
-        <button
-          type="button"
-          class="bg-blue-500 text-white h-10 w-[120px] cursor-pointer rounded text-xs"
-          @click="addVersion()"
-        >
+        <button type="button" class="bg-blue-500 text-white h-10 w-[120px] cursor-pointer rounded text-xs"
+          @click="addVersion()">
           <span v-if="!getLoader">Add Version</span>
-          <svg
-            v-if="getLoader"
-            class="animate-spin h-5 w-5 text-white flex mx-auto"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="#fffff"
-            viewBox="0 0 24 24"
-          >
-            <circle
-              class="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="#fffff"
-              stroke-width="4"
-            ></circle>
-            <path
-              class="opacity-75"
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-            ></path>
+          <svg v-if="getLoader" class="animate-spin h-5 w-5 text-white flex mx-auto" xmlns="http://www.w3.org/2000/svg"
+            fill="#fffff" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="#fffff" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+            </path>
           </svg>
         </button>
       </div>
@@ -59,12 +42,8 @@
                 {{ i.os }}
               </td>
               <td class="text-center border-r border-[#ededed]">
-                <input
-                  type="checkbox"
-                  class="h-4 w-4 cursor-pointer"
-                  :checked="i.updateAvailable"
-                  @change="handleUpdate(i)"
-                />
+                <input type="checkbox" class="h-4 w-4 cursor-pointer" :checked="i.updateAvailable"
+                  @change="handleUpdate(i)" />
               </td>
               <td class="text-center border-r border-[#ededed]">
                 <span v-html="deleteSvg" @click="deleteVersion(i)"></span>

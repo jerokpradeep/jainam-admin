@@ -22,7 +22,6 @@ const actions = {
       .getUserDetails(payload)
       .then((response) => {
         if (response.data.message == "Success" && response.data.result.length) {
-          console.log(response.data.result, 'response.data.result');
           
           commit("setUserDetails", response.data.result);
         } else {

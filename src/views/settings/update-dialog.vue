@@ -4,19 +4,24 @@
 
         <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
             <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                <div
+                    class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
                     <form @submit.prevent="handleSubmit()">
                         <div>
                             <div class="text-center ">
-                                <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Confirmation</h3>
+                                <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Confirmation
+                                </h3>
                                 <div class="mt-2">
                                     <p class="text-sm text-gray-500">Are you sure want to update ?</p>
                                 </div>
                             </div>
                         </div>
                         <div class="mt-5 sm:mt-6 flex gap-2">
-                            <button type="button" class="inline-flex w-full justify-center rounded-md border px-3 py-2 text-sm font-semibold primaryColor shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" @click="handleCancel()">Cancel</button>
-                            <button type="submit" class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Confirm</button>
+                            <button type="button"
+                                class="inline-flex w-full justify-center rounded-md border px-3 py-2 text-sm font-semibold primaryColor shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                @click="handleCancel()">Cancel</button>
+                            <button type="submit"
+                                class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Confirm</button>
                         </div>
                     </form>
                 </div>
@@ -32,7 +37,7 @@ export default defineComponent({
         const versionID = ref('')
         const os = ref('Android')
         const deviceType = ref('MOB')
-        return { versionID, os, deviceType}
+        return { versionID, os, deviceType }
     },
     props: ['cData'],
     methods: {

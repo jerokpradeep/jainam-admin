@@ -5,9 +5,7 @@ const AXIOS = axios.create({
   baseURL: env().BASEURL,
 });
 
-const UATAXIOS = axios.create({
-  baseURL: env().UATBASEURL,
-});
+
 
 export const httpService = {
   getUserBankDetails,
@@ -19,7 +17,6 @@ export const httpService = {
   getFeedbackDetails,
   FeedbackDownload,
   payOutDownload,
-  getMailLogData,
   getTopViewedPages,
   getVisitorsPerDay,
   getVersionList,
@@ -43,6 +40,13 @@ export const httpService = {
   getUserCount,
   getContractMasterData,
   updateSettingsAction,
+  loadPositionFile,
+  submitPositionFile,
+  loadHoldingFile,
+  submitHoldingFile,
+  getUserRecordData,
+  getUserLogDetails,
+  resetCache,
 };
 
 function getContractMasterData(payload: any) {
@@ -101,9 +105,7 @@ function FeedbackDownload(payload: any) {
   );
 }
 
-function getMailLogData(payload: any) {
-  return UATAXIOS.post("adminrest/smsEmailLog/getLog", payload, headers(true));
-}
+
 
 function headers(isDownload: boolean) {
   return {
@@ -135,15 +137,15 @@ function getproductlist() {
 }
 
 function getNewlyAddedSymbols() {
-  return axios.get("newlyAddedSymbols.json");
+  return axios.get("adrest/contract/get/newlyadd");
 }
 
 function getDeactivatedSymbols() {
-  return axios.get("deactivatedSymbols.json");
+  return axios.get("adrest/contract/get/deactivated");
 }
 
 function getDuplicateSymbols() {
-  return axios.get("duplicateSymbols.json");
+  return axios.get("adrest/contract/getDuplicateList");
 }
 
 function sendPushNotification(payload: any) {
@@ -200,10 +202,49 @@ function addUserKeyCloak(payload: any) {
 }
 
 function ssoLogin(payload: any) {
-  return AXIOS.post(`auth/sso/vendor/auth/getUserDetails`, payload);
+  return AXIOS.post(`authrest/sso/vendor/auth/getUserDetails`, payload);
 }
 
 //Get user count
 function getUserCount() {
   return AXIOS.get("adrest/user/login/details");
 }
+
+// file upload
+function loadPositionFile(payload: any) {
+  return AXIOS.post("adrest/position/upload", payload);
+}
+
+function submitPositionFile() {
+  return AXIOS.get("adrest/position/insert");
+}
+
+function loadHoldingFile(payload: any) {
+  return AXIOS.post("adrest/holdings/upload", payload);
+}
+
+function submitHoldingFile() {
+  return AXIOS.get("adrest/holdings/insert");
+}
+function getUserRecordData(payload: any) {
+  return AXIOS.get(`adrest/admin/userecord/${payload}`);
+}
+
+function getUserLogDetails() {
+  return AXIOS.get("adrest/admin/userLogDetails");
+}
+function resetCache(jsonObj: any) {
+  return AXIOS.post(`adrest/contract/reloadcache`, jsonObj, headers(false) );
+}
+
+// getAuthHeaders(){
+//   // let userId = localStorage.getItem("userId");
+//   // let sessionId = localStorage.getItem("sessionId");
+//  let userId =  store.state.userID 
+//  let sessionId = store.state.userSession
+//   let headers = {
+//       "Content-Type": "application/json",
+//       Authorization: "Bearer " + userId + " " + sessionId,
+//   };
+//   return headers;
+// }

@@ -24,7 +24,7 @@ export default defineComponent({
         return { userId }
     },
     methods: {
-        getPositionData() {}
+        getPositionData() { }
     },
 })
 </script>

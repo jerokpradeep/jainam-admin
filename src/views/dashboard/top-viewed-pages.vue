@@ -10,17 +10,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr
-        v-for="(i, id) in getTopViewedPages.result"
-        :key="id"
-        class="border-b border-[#ededed] even:bg-gray-50 hover:bg-gray-50"
-      >
+      <tr v-for="(i, id) in getTopViewedPages.result" :key="id"
+        class="border-b border-[#ededed] even:bg-gray-50 hover:bg-gray-50">
         <td class="primaryColor text-sm py-2 text-left">{{ i.url }}</td>
         <td class="primaryColor text-sm py-2 text-right">{{ i.count }}</td>
       </tr>
     </tbody>
   </table>
-<!-- </div> -->
+  <!-- </div> -->
 
   <!-- <div class="min-h-[400px] flex justify-center items-center">Coming soon</div> -->
 </template>
@@ -37,7 +34,7 @@ export default defineComponent({
   //     this.$store.dispatch("dash/getTopViewedPages");
   //   },
   methods: {
-    getWatchlistData() {},
+    getWatchlistData() { },
   },
   computed: {
     ...mapGetters("dash", ["getTopViewedPages"]),

@@ -43,15 +43,11 @@ const mutations = {
   setDownloadLoader(state: any, payload: any) {
     state.downloadLoader = payload;
   },
-  setMailLogs(state: any, payload: any) {
-    state.mailLogs = payload;
-  },
+
   setPageNum(state: any, payload: any) {
     state.pageNum = payload;
   },
-  setLoginType(state: any, payload: any) {
-    state.loginType = payload;
-  },
+
   setIsMailDial(state: any, payload: any) {
     state.isMailDial = payload;
   },
@@ -102,8 +98,7 @@ const actions = {
         } else {
         }
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
       })
       .finally(() => {});
   },
@@ -255,33 +250,6 @@ const actions = {
       });
   },
 
-  async getMailLogData({ commit }: any, payload: any) {
-    commit("setLoader", true);
-
-    await httpService
-      .getMailLogData(payload)
-      .then((response) => {
-        if (
-          response.status == 200 &&
-          response.data.result &&
-          response.data.result.length > 0
-        ) {
-          commit("setMailLogs", response.data.result);
-          commit("setLoginType", payload.type);
-        } else {
-          commit("setMailLogs", []);
-          notify({
-            group: "auth",
-            type: "error",
-            title: `${response.data.reason}`,
-          });
-        }
-      })
-      .finally(() => {
-        commit("setLoader", false);
-      });
-  },
-
   async getResponseLog({ state, commit }: any, payload: object) {
     commit("setLoader", true);
     await httpService
@@ -309,8 +277,9 @@ const actions = {
 };
 
 const getters = {
-  getLogDeatails: (state: { accessLogDetails: any }) => state.accessLogDetails,
+  
   getIsAccessLog: (state: { isAccessLog: any }) => state.isAccessLog,
+  getLogDeatails: (state: { accessLogDetails: any }) => state.accessLogDetails,
   getAccessRow: (state: { accessRow: any }) => state.accessRow,
   getLoader: (state: { loader: any }) => state.loader,
   getMailLogs: (state: { mailLogs: any }) => state.mailLogs,

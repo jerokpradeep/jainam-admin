@@ -1,4 +1,6 @@
 import { httpService } from "../services/httpservices";
+import { useNotification } from "@kyvg/vue3-notification";
+const { notify } = useNotification();
 
 const state = {
   marketWatchData: [],
@@ -28,10 +30,14 @@ const actions = {
         ) {
           commit("setUserBankDetails", response.data.result);
         } else {
+          notify({
+            group: "auth",
+            type: "error",
+            title: `${response.data.message}`,
+          });
         }
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
       })
       .finally(() => {});
   },
@@ -46,6 +52,12 @@ const actions = {
         response.data.message != "No Records Found"
       ) {
         commit("setMarketWatchData", response.data.result);
+      }else{
+        notify({
+          group: "auth",
+          type: "error",
+          title: `${response.data.message}`,
+        });
       }
     });
   },

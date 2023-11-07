@@ -18,49 +18,30 @@
             </td>
             <td class="text-center border-r border-[#ededed]">
               <div class="items-center my-4">
-                <a
-                  class="flex justify-center"
-                  @click="handleEnabledSwitch(i.adminValue)"
-                >
-                  <span
-                    class="text-sm pr-2"
-                    :class="{
-                      'secondary-color': i.adminValue == 0,
-                      'text-[#3B82F6]': i.adminValue == 1,
-                    }"
-                  ></span>
-                  <button
-                    type="button"
-                    class="group relative inline-flex h-5 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-full focus:ring-[#753ED7] focus:ring-offset-2"
-                  >
-                    <span
-                      aria-hidden="true"
-                      class="pointer-events-none absolute h-full w-full rounded-md bg-white dark:bg-[#181818]"
-                    />
-                    <span
-                      aria-hidden="true"
-                      :class="[
-                        i.adminValue == 0
-                          ? 'bg-gray-200 dark:bg-gray-600'
-                          : 'bg-[#3B82F6] dark:bg-gray-600',
-                        'pointer-events-none absolute mx-auto h-4 w-9 rounded-full transition-colors duration-200 ease-in-out',
-                      ]"
-                    />
-                    <span
-                      aria-hidden="true"
-                      :class="[
-                        i.adminValue == 0 ? 'translate-x-0' : 'translate-x-5',
-                        'pointer-events-none absolute left-0 inline-block h-5 w-5 transform rounded-full border border-gray-200 bg-white dark:bg-zinc-800 shadow ring-0 transition-transform duration-200 ease-in-out',
-                      ]"
-                    />
+                <a class="flex justify-center" @click="handleEnabledSwitch(i.adminValue)">
+                  <span class="text-sm pr-2" :class="{
+                    'secondary-color': i.adminValue == 0,
+                    'text-[#3B82F6]': i.adminValue == 1,
+                  }"></span>
+                  <button type="button"
+                    class="group relative inline-flex h-5 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-full focus:ring-[#753ED7] focus:ring-offset-2">
+                    <span aria-hidden="true"
+                      class="pointer-events-none absolute h-full w-full rounded-md bg-white dark:bg-[#181818]" />
+                    <span aria-hidden="true" :class="[
+                      i.adminValue == 0
+                        ? 'bg-gray-200 dark:bg-gray-600'
+                        : 'bg-[#3B82F6] dark:bg-gray-600',
+                      'pointer-events-none absolute mx-auto h-4 w-9 rounded-full transition-colors duration-200 ease-in-out',
+                    ]" />
+                    <span aria-hidden="true" :class="[
+                      i.adminValue == 0 ? 'translate-x-0' : 'translate-x-5',
+                      'pointer-events-none absolute left-0 inline-block h-5 w-5 transform rounded-full border border-gray-200 bg-white dark:bg-zinc-800 shadow ring-0 transition-transform duration-200 ease-in-out',
+                    ]" />
                   </button>
-                  <span
-                    class="text-sm pl-2"
-                    :class="{
-                      'secondary-color': i.adminValue == 0,
-                      'text-[#3B82F6]': i.adminValue == 1,
-                    }"
-                  ></span>
+                  <span class="text-sm pl-2" :class="{
+                    'secondary-color': i.adminValue == 0,
+                    'text-[#3B82F6]': i.adminValue == 1,
+                  }"></span>
                 </a>
               </div>
             </td>
@@ -68,7 +49,7 @@
         </tbody>
       </table>
       <noData v-else></noData>
-      <confirmation_dialogue v-if="confirmationdialogue == 'on' || confirmationdialogue == 'off'" ></confirmation_dialogue>
+      <confirmation_dialogue v-if="confirmationdialogue == 'on' || confirmationdialogue == 'off'"></confirmation_dialogue>
     </div>
   </div>
 </template>
@@ -87,7 +68,7 @@ export default defineComponent({
     };
   },
   components: {
-    confirmation_dialogue,noData
+    confirmation_dialogue, noData
   },
   computed: {
     ...mapState("settings", ["confirmationdialogue"]),

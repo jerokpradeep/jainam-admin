@@ -29,7 +29,7 @@ export default defineComponent({
         return { userId, date }
     },
     methods: {
-        getHoldingsData() {}
+        getHoldingsData() { }
     },
 })
 </script>

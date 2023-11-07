@@ -1,10 +1,10 @@
 <template>
     <div>
-        <tab-menu @activeTab="changeTab"/>
-        <contractMaster v-if="validTab == 'Contract Master'"/>
-        <newSymbols v-if="validTab == 'Newly Added Symbols'"/>
-        <deactivatedSymbols v-if="validTab == 'Deactivated Symbols'"/>
-        <duplicateSymbols v-if="validTab == 'Duplicate Symbols'"/>
+        <tab-menu @activeTab="changeTab" />
+        <contractMaster v-if="validTab == 'Contract Master'" />
+        <newSymbols v-if="validTab == 'Newly Added Symbols'" />
+        <deactivatedSymbols v-if="validTab == 'Deactivated Symbols'" />
+        <duplicateSymbols v-if="validTab == 'Duplicate Symbols'" />
         <addNewScrip v-if="validTab == 'Add New Scrip'" />
     </div>
 </template>
@@ -22,13 +22,13 @@ export default defineComponent({
         return { validTab }
     },
     methods: {
-        changeTab(data:any) {
+        changeTab(data: any) {
             this.validTab = data.name
             this.$store.dispatch('tabs/setActiveTab', { path: this.$route.path, id: data.id })
         }
     },
     created() {
-        this.changeTab( { name: 'Contract Master', id: 0 },)
+        this.changeTab({ name: 'Contract Master', id: 0 },)
     },
 })
 </script>

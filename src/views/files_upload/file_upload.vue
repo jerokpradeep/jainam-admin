@@ -9,9 +9,9 @@
     <div v-if="validTab == 'Holdings Upload'">
       <holdings_upload></holdings_upload>
     </div>
-    <div v-if="validTab == 'Add New Scrip'">
+    <!-- <div v-if="validTab == 'Add New Scrip'">
       <add_new_scrip></add_new_scrip>
-    </div>
+    </div> -->
   </div>
 </template>
 

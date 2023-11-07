@@ -23,8 +23,8 @@ export default defineComponent({
         const date = ref('')
         return { date }
     },
-     methods: {
-        getEdisData() {}
-     },
+    methods: {
+        getEdisData() { }
+    },
 })
 </script>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <tab-menu @activeTab="changeTab"/>
+        <tab-menu @activeTab="changeTab" />
         <adminMsg v-if="validTab == 'Admin Message'" />
     </div>
 </template>
@@ -14,7 +14,7 @@ export default defineComponent({
         return { validTab }
     },
     methods: {
-        changeTab(data:any) {
+        changeTab(data: any) {
             this.validTab = data.name
             this.$store.dispatch('tabs/setActiveTab', { path: this.$route.path, id: data.id })
         }

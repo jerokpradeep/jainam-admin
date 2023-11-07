@@ -1,7 +1,6 @@
 const state = {
   logsTabs: [
-    { name: "Accesslog", id: 0, active: true },
-    { name: "Mail/SMS", id: 1, active: false },
+    { name: "Accesslog", id: 0, active: true }
   ],
   reportTabs: [
     { name: "Payout", id: 0, active: false },

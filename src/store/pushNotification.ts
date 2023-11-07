@@ -18,7 +18,7 @@ const actions = {
       .then((response) => {
         if (response.data.message == 'Success') {
             notify({ group: 'auth', type: 'success', title: `${response.data.message}` })
-        }
+        }notify({ group: 'auth', type: 'failed',title: `${response.data.message}` })
       })
       .catch(() => {})
       .finally(() => {

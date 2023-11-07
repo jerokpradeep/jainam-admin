@@ -13,44 +13,28 @@
           <div class="mb-5 flex flex-col">
             <div class="flex flex-col gap-2">
               <label class="text-sm">User ID</label>
-              <input
-                type="text"
-                class="border w-full h-10 rounded focus:outline-0 px-4 text-xs"
-                v-model="userID"
-                maxlength="15"
-              />
+              <input type="text" class="border w-full h-10 rounded focus:outline-0 px-4 text-xs" v-model="userID"
+                maxlength="15" />
 
               <div class="h-4 mb-2 text-red-500 text-xs">
-                <span v-if="submitted && userID == ''"
-                  >User ID is required</span
-                >
+                <span v-if="submitted && userID == ''">User ID is required</span>
               </div>
             </div>
 
             <div class="flex gap-2 justify-between">
               <div class="flex flex-col gap-2 w-1/2">
                 <label class="text-sm">First Name</label>
-                <input
-                  type="text"
-                  class="border w-full h-10 rounded focus:outline-0 px-4 text-xs"
-                  v-model="firstName"
-                  maxlength="50"
-                />
+                <input type="text" class="border w-full h-10 rounded focus:outline-0 px-4 text-xs" v-model="firstName"
+                  maxlength="50" />
 
                 <div class="h-4 mb-2 text-red-500 text-xs">
-                  <span v-if="submitted && firstName == ''"
-                    >First Name is required</span
-                  >
+                  <span v-if="submitted && firstName == ''">First Name is required</span>
                 </div>
               </div>
               <div class="flex flex-col gap-2 w-1/2">
                 <label class="text-sm">Last Name</label>
-                <input
-                  type="text"
-                  class="border w-full h-10 rounded focus:outline-0 px-4 text-xs"
-                  v-model="lastName"
-                  maxlength="50"
-                />
+                <input type="text" class="border w-full h-10 rounded focus:outline-0 px-4 text-xs" v-model="lastName"
+                  maxlength="50" />
 
                 <div class="h-4 mb-2 text-red-500 text-xs"></div>
               </div>
@@ -58,37 +42,22 @@
 
             <div class="flex flex-col gap-2">
               <label class="text-sm">E-Mail ID</label>
-              <input
-                type="text"
-                class="border w-full h-10 rounded focus:outline-0 px-4 text-xs"
-                v-model="emailID"
-                maxlength="50"
-              />
+              <input type="text" class="border w-full h-10 rounded focus:outline-0 px-4 text-xs" v-model="emailID"
+                maxlength="50" />
               <div class="h-4 mb-2 text-red-500 text-xs"></div>
             </div>
 
             <div class="flex gap-2 justify-between">
               <div class="flex flex-col gap-2 w-1/2">
                 <label class="text-sm">PAN Number</label>
-                <input
-                  type="text"
-                  maxlength="10"
-                  class="border w-full h-10 rounded focus:outline-0 px-4 text-xs"
-                  v-model="pan"
-                  @input="pan ? (pan = pan.toUpperCase()) : ''"
-                  @keypress="keyPressAlphaNumeric($event)"
-                />
+                <input type="text" maxlength="10" class="border w-full h-10 rounded focus:outline-0 px-4 text-xs"
+                  v-model="pan" @input="pan ? (pan = pan.toUpperCase()) : ''" @keypress="keyPressAlphaNumeric($event)" />
                 <div class="h-4 mb-2 text-red-500 text-xs"></div>
               </div>
               <div class="flex flex-col gap-2 w-1/2">
                 <label class="text-sm">Mobile No</label>
-                <input
-                  type="text"
-                  maxlength="10"
-                  class="border w-full h-10 rounded focus:outline-0 px-4 text-xs"
-                  v-model="mobile"
-                  @input="digitKeyOnly($event)"
-                />
+                <input type="text" maxlength="10" class="border w-full h-10 rounded focus:outline-0 px-4 text-xs"
+                  v-model="mobile" @input="digitKeyOnly($event)" />
                 <div class="h-4 mb-2 text-red-500 text-xs"></div>
               </div>
             </div>
@@ -96,35 +65,24 @@
             <div class="flex gap-2 justify-between" v-if="!isEdit">
               <div class="flex flex-col gap-2 w-1/2">
                 <label class="text-sm">Marital Status</label>
-                <select
-                  v-model="maritalStatus"
-                  class="border w-full h-10 rounded focus:outline-0 px-4 text-sm"
-                >
+                <select v-model="maritalStatus" class="border w-full h-10 rounded focus:outline-0 px-4 text-sm">
                   <option disabled selected value="options">Select</option>
                   <option value="SINGLE">Single</option>
                   <option value="MARRIED">Married</option>
                 </select>
                 <div class="h-4 mb-2 text-red-500 text-xs">
-                  <span
-                    v-if="submitted && maritalStatus == 'options' && !isEdit"
-                    >Marital Status is required</span
-                  >
+                  <span v-if="submitted && maritalStatus == 'options' && !isEdit">Marital Status is required</span>
                 </div>
               </div>
               <div class="flex flex-col gap-2 w-1/2">
                 <label class="text-sm">Gender</label>
-                <select
-                  v-model="gender"
-                  class="border w-full h-10 rounded focus:outline-0 px-4 text-sm"
-                >
+                <select v-model="gender" class="border w-full h-10 rounded focus:outline-0 px-4 text-sm">
                   <option disabled selected value="options">Select</option>
                   <option value="M">Male</option>
                   <option value="F">Female</option>
                 </select>
                 <div class="h-4 mb-2 text-red-500 text-xs">
-                  <span v-if="submitted && gender == 'options' && !isEdit"
-                    >Gender is required</span
-                  >
+                  <span v-if="submitted && gender == 'options' && !isEdit">Gender is required</span>
                 </div>
               </div>
             </div>
@@ -133,49 +91,30 @@
               <p class="deatailsHead whitespace-nowrap min-w-[100px] text-sm">
                 Enabled
               </p>
-              <a
-                class="px-[68px] min-w-[160px] flex justify-end"
-                @click="handleEnabledSwitch()"
-              >
-                <span
-                  class="text-sm pr-2"
-                  :class="{
-                    'secondary-color': !enabledSwitch,
-                    'text-[#3B82F6]': enabledSwitch,
-                  }"
-                ></span>
-                <button
-                  type="button"
-                  class="group relative inline-flex h-5 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-full focus:ring-[#753ED7] focus:ring-offset-2"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="pointer-events-none absolute h-full w-full rounded-md bg-white dark:bg-[#181818]"
-                  />
-                  <span
-                    aria-hidden="true"
-                    :class="[
-                      !enabledSwitch
-                        ? 'bg-gray-200 dark:bg-gray-600'
-                        : 'bg-[#3B82F6] dark:bg-gray-600',
-                      'pointer-events-none absolute mx-auto h-4 w-9 rounded-full transition-colors duration-200 ease-in-out',
-                    ]"
-                  />
-                  <span
-                    aria-hidden="true"
-                    :class="[
-                      !enabledSwitch ? 'translate-x-0' : 'translate-x-5',
-                      'pointer-events-none absolute left-0 inline-block h-5 w-5 transform rounded-full border border-gray-200 bg-white dark:bg-zinc-800 shadow ring-0 transition-transform duration-200 ease-in-out',
-                    ]"
-                  />
+              <a class="px-[68px] min-w-[160px] flex justify-end" @click="handleEnabledSwitch()">
+                <span class="text-sm pr-2" :class="{
+                  'secondary-color': !enabledSwitch,
+                  'text-[#3B82F6]': enabledSwitch,
+                }"></span>
+                <button type="button"
+                  class="group relative inline-flex h-5 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-full focus:ring-[#753ED7] focus:ring-offset-2">
+                  <span aria-hidden="true"
+                    class="pointer-events-none absolute h-full w-full rounded-md bg-white dark:bg-[#181818]" />
+                  <span aria-hidden="true" :class="[
+                    !enabledSwitch
+                      ? 'bg-gray-200 dark:bg-gray-600'
+                      : 'bg-[#3B82F6] dark:bg-gray-600',
+                    'pointer-events-none absolute mx-auto h-4 w-9 rounded-full transition-colors duration-200 ease-in-out',
+                  ]" />
+                  <span aria-hidden="true" :class="[
+                    !enabledSwitch ? 'translate-x-0' : 'translate-x-5',
+                    'pointer-events-none absolute left-0 inline-block h-5 w-5 transform rounded-full border border-gray-200 bg-white dark:bg-zinc-800 shadow ring-0 transition-transform duration-200 ease-in-out',
+                  ]" />
                 </button>
-                <span
-                  class="text-sm pl-2"
-                  :class="{
-                    'secondary-color': !enabledSwitch,
-                    'text-[#3B82F6]': enabledSwitch,
-                  }"
-                ></span>
+                <span class="text-sm pl-2" :class="{
+                  'secondary-color': !enabledSwitch,
+                  'text-[#3B82F6]': enabledSwitch,
+                }"></span>
               </a>
             </div>
 
@@ -183,49 +122,30 @@
               <p class="deatailsHead whitespace-nowrap min-w-[100px] text-sm">
                 Email Verified
               </p>
-              <a
-                class="px-[68px] min-w-[160px] flex justify-end"
-                @click="handleEmailVerifiedSwitch()"
-              >
-                <span
-                  class="text-sm pr-2"
-                  :class="{
-                    'secondary-color': !emailVerifiedSwitch,
-                    'text-[#3B82F6]': emailVerifiedSwitch,
-                  }"
-                ></span>
-                <button
-                  type="button"
-                  class="group relative inline-flex h-5 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-full focus:ring-[#753ED7] focus:ring-offset-2"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="pointer-events-none absolute h-full w-full rounded-md bg-white dark:bg-[#181818]"
-                  />
-                  <span
-                    aria-hidden="true"
-                    :class="[
-                      !emailVerifiedSwitch
-                        ? 'bg-gray-200 dark:bg-gray-600'
-                        : 'bg-[#3B82F6] dark:bg-gray-600',
-                      'pointer-events-none absolute mx-auto h-4 w-9 rounded-full transition-colors duration-200 ease-in-out',
-                    ]"
-                  />
-                  <span
-                    aria-hidden="true"
-                    :class="[
-                      !emailVerifiedSwitch ? 'translate-x-0' : 'translate-x-5',
-                      'pointer-events-none absolute left-0 inline-block h-5 w-5 transform rounded-full border border-gray-200 bg-white dark:bg-zinc-800 shadow ring-0 transition-transform duration-200 ease-in-out',
-                    ]"
-                  />
+              <a class="px-[68px] min-w-[160px] flex justify-end" @click="handleEmailVerifiedSwitch()">
+                <span class="text-sm pr-2" :class="{
+                  'secondary-color': !emailVerifiedSwitch,
+                  'text-[#3B82F6]': emailVerifiedSwitch,
+                }"></span>
+                <button type="button"
+                  class="group relative inline-flex h-5 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-full focus:ring-[#753ED7] focus:ring-offset-2">
+                  <span aria-hidden="true"
+                    class="pointer-events-none absolute h-full w-full rounded-md bg-white dark:bg-[#181818]" />
+                  <span aria-hidden="true" :class="[
+                    !emailVerifiedSwitch
+                      ? 'bg-gray-200 dark:bg-gray-600'
+                      : 'bg-[#3B82F6] dark:bg-gray-600',
+                    'pointer-events-none absolute mx-auto h-4 w-9 rounded-full transition-colors duration-200 ease-in-out',
+                  ]" />
+                  <span aria-hidden="true" :class="[
+                    !emailVerifiedSwitch ? 'translate-x-0' : 'translate-x-5',
+                    'pointer-events-none absolute left-0 inline-block h-5 w-5 transform rounded-full border border-gray-200 bg-white dark:bg-zinc-800 shadow ring-0 transition-transform duration-200 ease-in-out',
+                  ]" />
                 </button>
-                <span
-                  class="text-sm pl-2"
-                  :class="{
-                    'secondary-color': !emailVerifiedSwitch,
-                    'text-[#3B82F6]': emailVerifiedSwitch,
-                  }"
-                ></span>
+                <span class="text-sm pl-2" :class="{
+                  'secondary-color': !emailVerifiedSwitch,
+                  'text-[#3B82F6]': emailVerifiedSwitch,
+                }"></span>
               </a>
             </div>
           </div>
@@ -234,19 +154,12 @@
       </div>
       <div class="h-full flex items-top justify-end w-[100%] gap-4">
         <div class="mt-[10px]">
-          <input
-            class="bg-white-500 text-black border border-black h-10 w-[120px] cursor-pointer rounded text-xs"
-            type="button"
-            value="Cancel"
-            @click="goBack()"
-          />
+          <input class="bg-white-500 text-black border border-black h-10 w-[120px] cursor-pointer rounded text-xs"
+            type="button" value="Cancel" @click="goBack()" />
         </div>
         <div class="mt-[10px]">
-          <input
-            class="bg-blue-500 text-white h-10 w-[120px] cursor-pointer rounded text-xs"
-            type="submit"
-            value="Submit"
-          />
+          <input class="bg-blue-500 text-white h-10 w-[120px] cursor-pointer rounded text-xs" type="submit"
+            value="Submit" />
         </div>
       </div>
     </form>
@@ -256,9 +169,9 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 // import { mapGetters } from "vuex"
-import commonjs from "../../mixins/common";
+import commonFunc from "../../mixins/common";
 export default defineComponent({
-  mixins: [commonjs],
+  mixins: [commonFunc],
   setup() {
     const firstName: any = ref("");
     const lastName: any = ref("");

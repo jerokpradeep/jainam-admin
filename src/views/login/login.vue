@@ -84,12 +84,12 @@ export default {
       window.location.href = `${env().SSOREDIRECTURL}?appcode=${env().APPCODE}`;
     },
 
-    loginSubmit(){
-      if(this.userId == "Admin"){
-        if(this.password == "Jainum@123"){
-        this.$router.push("dashboard")
-      }         
-      } 
+    loginSubmit() {
+      if (this.userId == "Admin") {
+        if (this.password == "Jainum@123") {
+          this.$router.push("dashboard")
+        }
+      }
     }
   },
   created() {

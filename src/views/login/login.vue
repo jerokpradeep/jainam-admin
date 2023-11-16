@@ -2,7 +2,7 @@
   <div class="flex flex-1 flex-col px-4 sm:px-6 lg:px-8 items-center justify-center h-full">
     <div class="relative flex flex-1 flex-col py-16 w-[380px] items-center justify-center h-full">
       <div class="">
-        <img src="../../assets/app_logo.svg" alt="logo" class="mx-auto w-[78%]" />
+        <img src="../../assets/menu/app_logo.svg" alt="logo" class="mx-auto w-[78%]" />
       </div>
       <form @submit.prevent="loginSubmit()" class="w-full">
         <div class="flex mt-8 w-full">

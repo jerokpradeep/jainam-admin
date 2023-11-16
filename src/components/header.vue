@@ -12,7 +12,7 @@
           <burgerMenu />
         </div>
         <div>
-          <img src="../assets/app_logo.svg" alt="" class="max-w-[80%] h-10" />
+          <img src="../assets/menu/app_logo.svg" alt="" class="max-w-[80%] h-10" />
         </div>
       </div>
       <div class="">
@@ -39,6 +39,6 @@ export default {
       this.$router.push("/?logout=true");
     },
   },
-  created() {},
+  created() { },
 };
 </script>

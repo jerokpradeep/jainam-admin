@@ -1,5 +1,6 @@
 import { httpService } from "../services/httpservices";
-import commonFunc from "../mixins/common.js";
+import commonFunc from "../mixins/common";
+
 const state = {
   userDets: ["A"],
   abc: "ghj",
@@ -19,14 +20,12 @@ const state = {
     { type: "Mobile Login", count: "0", active: false ,source:'mob'},
     { type: "API Login", count: "0", active: false ,source:'api'},
   ],
+  downloadValue: "UniqueUser",
   totalCount: 0,
   userLoginDetails: [],
   last12hrActiveUsersCount: null,
-
   activeUserLoginCondition:false,
-
   userLoginDetailsWithoutWeekends: [],
-
   // chart objects
   USERLOGSCHARTDATA: {
     tooltip: {
@@ -285,6 +284,7 @@ const state = {
 userRecordDetails :[],
 userLogCount: [],
 loader:false,
+activepagetab : "UniqueUser",
 
  
 };
@@ -306,16 +306,24 @@ const mutations = {
     state.VisitorsPerDayloader = payload;
   },
   setActiveTab(state: any, index: any) {
-    //state.tab[index].active = true ;
     for(let item =0; item< state.tab.length; item++){
       if(item != index) {
         state.tab[item].active = false;
       } else {
         state.tab[item].active = true;
+        state.activepagetab = state.tab[item].source.toString();
+       
+
       }
     }
 
+  }, 
+  
+  setdownloadValue(state: any, payload: any) {
+    state.downloadValue= payload;
   },
+
+
   setTopviewsLoader(state: any, payload: any) {
     state.topviewsLoader = payload;
   },
@@ -327,6 +335,7 @@ const mutations = {
   },
 
   setUserCount(state: any, payload: any) {
+    state.totalCount = payload.totalCount;
     state.tab.forEach((el: any) => {
       if (el.type == "Unique Active Users") {
         el.count = payload.totalCount ? `${payload.totalCount}` : "0";
@@ -345,13 +354,10 @@ const mutations = {
   SET_USER_COUNT(state: any, payload: any) {
     state.userLogCount = payload;
     if (payload) {
-      
-      
         state.DEVICE_TYPE_CHARTDATA.series[0].data[0].value = Number(payload[0].web);
         state.DEVICE_TYPE_CHARTDATA.series[0].data[1].value = Number(payload[0].mob);
         state.DEVICE_TYPE_CHARTDATA.series[0].data[2].value = Number(payload[0].api); 
     }
-    
 },
 SUM: (state:any) => {
   return state.web + state.mob + state.api;
@@ -399,7 +405,6 @@ SET_API_USER_COUNT(state:any, payload:any) {
 // },
 
   SET_USERLOGINDETAILS({state,commit}: any, payload: any) {
-   
     state.userLoginDetails = payload;
     state.userLoginDetailsWithoutWeekends = [];
 
@@ -439,14 +444,14 @@ SET_API_USER_COUNT(state:any, payload:any) {
     state.TOTALUSERLOGSCHARTDATA.series[1].data = [];
     state.TOTALUSERLOGSCHARTDATA.series[2].data = [];
 
-    payload.forEach((element: any) => {
-      // unique users
+    
+
+    payload.forEach((element: any) => { 
+      
+      
       state.USERLOGSCHARTDATA.xAxis.data.push(
-        (element.date)
+       element.date
       ); 
-      // state.USERLOGSCHARTDATA.xAxis.data.push(
-      //   commonFunc.methods.getDateString(new Date(element.date), "d-M-y")
-      // );
       
       state.USERLOGSCHARTDATA.series[0].data.push(element.uniqueMob?element.uniqueMob:'0');
       state.USERLOGSCHARTDATA.series[1].data.push(element.uniqueWeb?element.uniqueWeb:'0');
@@ -456,18 +461,16 @@ SET_API_USER_COUNT(state:any, payload:any) {
       state.TOTALUSERLOGSCHARTDATA.xAxis.data.push(
         (element.date)
       );
-      // state.TOTALUSERLOGSCHARTDATA.xAxis.data.push(
-      //   commonFunc.methods.getDateString(new Date(element.date), "d-M-y")
-      // );
+      
       state.TOTALUSERLOGSCHARTDATA.series[0].data.push(element.totalMobile?element.totalMobile:'0');
       state.TOTALUSERLOGSCHARTDATA.series[1].data.push(element.totalWeb?element.totalWeb:'0');
       state.TOTALUSERLOGSCHARTDATA.series[2].data.push(element.totalApi?element.totalApi:'0');
     });
-    state.TOTALUSERLOGSCHARTDATA.xAxis.data;
+    state.TOTALUSERLOGSCHARTDATA.xAxis.data.reverse();
     state.TOTALUSERLOGSCHARTDATA.series[0].data.reverse();
     state.TOTALUSERLOGSCHARTDATA.series[1].data.reverse();
     state.TOTALUSERLOGSCHARTDATA.series[2].data.reverse();
-    state.USERLOGSCHARTDATA.xAxis.data;
+    state.USERLOGSCHARTDATA.xAxis.data.reverse();
     state.USERLOGSCHARTDATA.series[0].data.reverse();
     state.USERLOGSCHARTDATA.series[1].data.reverse();
     state.USERLOGSCHARTDATA.series[2].data.reverse();
@@ -501,11 +504,11 @@ SET_API_USER_COUNT(state:any, payload:any) {
     state.DASHBOARD_USERLOGS_CHARTDATA.series[2].data.reverse();
     state.DASHBOARD_USERLOGS_CHARTDATA.series[3].data.reverse();
   },
+
 };
 
 const actions = {
   async getUserCountDetails({commit }: any) {
-    //debugger;
     commit("setLoader", false);
      httpService
       .getUserCountDetails()
@@ -515,7 +518,7 @@ const actions = {
           response.data.status == "Ok" &&
           response.data.message != "No Records Found"
         ) {
-          // commit("setUserCountDetails", response.data.result);
+         
           commit("setUserCountDetails",response.data.result.reverse());
 
           if(response.data.result[0] != 'No Records Found'){
@@ -527,7 +530,8 @@ const actions = {
         } else {
         }
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
       }).finally(()=> {
         commit("setLoader", true);
 
@@ -548,67 +552,38 @@ const actions = {
         commit("setTopviewsLoader", false);
       });
   },
-
-async getUserRecordData({ commit }: any,payload:any ){
-  
-  // commit("getuserrecorddata", true);
-  await httpService
-    . getUserRecordData(payload)
-    .then((response) => {
-     
-      if (response.data) {
-        if(response.data.result[0] != 'No Records Found')
-      {
-          commit("setUserRecordData", response.data.result);
-        } else {
-          commit("setUserRecordData", []);
+  //
+  //
+  async getUserRecordData({ commit }: any, payload: any) {
+    await httpService
+      .getUserRecordData(payload)
+      .then((response) => {
+        if (response.data) {
+          if (response.data.result[0] != "No Records Found") {
+            commit("setUserRecordData", response.data.result);
+          } else {
+            commit("setUserRecordData", []);
+          }
         }
-      }
-    })
-    .catch(() => {})
-    .finally(() => {
-      // commit("setTopviewsLoader", false);
-    });
-},
-
-
-
-
-
-
-
+      })
+      .catch(() => {})
+      .finally(() => {
+        // commit("setTopviewsLoader", false);
+      });
+  },
 
   async getVisitorsPerDay({ commit }: any) {
-   
-    
-    // commit("setgetVisitorsPerDayLoader", true);
     await httpService
       .getVisitorsPerDay()
       .then((response) => {
         if (response.data) {
-       
-          //  let newArr = [];
-          //   debugger
-          //  let formatArr = response.data.result.forEach((element:any) => {
-          //   element.date = new Date(element.date)
-          //  });
-         
-          //  for(let i; i<response.data.result; i++);
-          //   newArr= formatArr.sort((a:any,b:any)=> a.date - b.date);
-         
-            
-          commit("setVisitorsPerDay",response.data.result.reverse());
-       
-          // commit("SET_USERLOGINDETAILS", response.data.result);
+          commit("setVisitorsPerDay",response.data.result);
           if(response.data.result[0] != 'No Records Found'){
             commit("SET_USERLOGSCHARTDATA", response.data.result);
           }
-          else{
+          else {
             commit("SET_USERLOGSCHARTDATA", []);
-            
-
           }
-          
         }
       })
       .catch(() => {})
@@ -627,7 +602,7 @@ async getUserRecordData({ commit }: any,payload:any ){
           response.status == 200
         ) {
           commit("setUserCount", response.data?.result[0]);
-          commit("setTotalUserCount", response.data?.result[0]?.totalCount);
+        
         }
       })
       .catch(() => {})
@@ -635,8 +610,6 @@ async getUserRecordData({ commit }: any,payload:any ){
         commit("setTopviewsLoader", false);
       });
   },
-
-
 };
 
 const getters = {
@@ -664,13 +637,13 @@ const getters = {
   getUserLogDetails: (state: any) => {
     return state.userLoginDetails;
   },
-  getLast12hrActiveUsersCount: (state:any) => {
-    return state.last12hrActiveUsersCount
+  getLast12hrActiveUsersCount: (state: any) => {
+    return state.last12hrActiveUsersCount;
   },
   getUserRecordData: (state: any) => {
     return state.userRecordDetails;
   },
-  activeUserLoginCondition:(state: any) => {
+  activeUserLoginCondition: (state: any) => {
     return state.activeUserLoginCondition;
   },
   getUserCountDetails: (state: any) => {

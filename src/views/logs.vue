@@ -14,7 +14,7 @@ th {
         <div class="mb-6 gap-2 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-6">
           <div v-if="validTab == 'Accesslog'">
             <p class="primaryColor pb-1 text-sm">UserId</p>
-            <input type="text" ref="userID" v-model="userId" maxlength="10" id="logsId"
+            <input type="text" ref="userID" v-model="userId" maxlength="10" id="logsId" autocomplete="off"
               class="border w-full h-10 rounded focus:outline-0 px-4 text-xs" />
           </div>
 
@@ -22,7 +22,7 @@ th {
             <p class="primaryColor pb-1 text-sm">Log Type</p>
             <select v-model="accessLogType" @change="
               $store.commit(
-                'accessLog/setAccessLogType',              //
+                'accessLog/setAccessLogType',
                 accessLogType == 'accessLog'
               )
               " class="border w-full h-10 rounded focus:outline-0 px-4 text-xs">
@@ -31,23 +31,20 @@ th {
             </select>
           </div>
 
-          <div v-if="validTab == 'Accesslog' && distinctUrl.length">
+          <div v-if="(accessLogType == 'accessLog' && validTab != 'Mail/SMS') && accessLogType.length">
             <p class="primaryColor pb-1 text-sm">URI</p>
-            <select v-model="uri" v-for="(list, index) in distinctUrl" :key="index" @change="
-              $store.commit(
-                'accessLog/setAccessLogType',
-                accessLogType == 'accessLog'
-              )
-              " class="border w-full h-10 rounded focus:outline-0 px-4 text-xs">
-              <option value="accessLog">{{ list }}</option>
-            </select>
+            <input v-model="uri" @change="$store.commit('accessLog/setAccessLogType', accessLogType == 'accessLog')"
+              class="border w-full h-10 rounded focus:outline-0 px-4 text-xs" />
+            <option :value="list" v-for="(list, index) in getDistinctUrl" :key="index">{{ list }}</option>
+            <!-- select is replaced by input -->
           </div>
-
-          <div v-else>
+          <!-- v-else -->
+          <!-- <div>
             <p class="primaryColor pb-1 text-sm">URI</p>
             <input type="text" ref="userID" v-model="uri" id="logsId"
               class="border w-full h-10 rounded focus:outline-0 px-4 text-xs" />
-          </div>
+          </div> -->
+
           <div>
             <p class="primaryColor pb-1 text-sm">From Date</p>
             <!-- @change="addDays(fromDate, 10, 'fromDate')" -->
@@ -94,7 +91,7 @@ th {
                   {{ item.uri || item.url }}
                 </td>
                 <td class="truncate text-center border-r">
-                  {{ item.created_on || item.createdOn }}
+                  {{ formatDate(new Date(item.created_on)) }}
                 </td>
                 <td class="truncate text-center border-r">{{ item.method }}</td>
                 <td class="truncate border-r">
@@ -145,7 +142,9 @@ import {
 import accesslog from "../components/dialog/responseLog.vue";
 import maillogs from "./mail-logs.vue";
 import noData from "../components/no-data.vue";
+import commonFunc from "../mixins/common";
 export default defineComponent({
+  mixins: [commonFunc],
   setup() {
     const fromDate = ref();
     const maxDateToDate = ref("");
@@ -364,7 +363,7 @@ export default defineComponent({
       }
       return arr;
     },
-    ...mapGetters("accessLog", ["getLogDeatails", "getLoader", "getMailLogs"]),
+    ...mapGetters("accessLog", ["getLogDeatails", "getLoader", "getMailLogs", 'getDistinctUrl']),
     ...mapState("accessLog", ["distinctUrl"]),
   },
   components: {

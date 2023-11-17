@@ -10,33 +10,9 @@ export default {
     }),
   },
   methods: {
-    keyPressAlphaNumeric(event) {
-                    var inp = String.fromCharCode(event.keyCode);
-                    if (event.keyCode != 13) {
-                        if (/[a-zA-Z0-9]/.test(inp)) {
-                            return true;
-                        } else {
-                            event.preventDefault();
-                            return false;
-                        }
-                    }
-                },
-                formatDate(date) {
-                                  const day = String(date.getDate()).padStart(2, '0');
-                                  const month = String(date.getMonth() + 1).padStart(2, '0');
-                                  const year = date.getFullYear();
-                            
-                                  let hours = date.getHours();
-                                  const ampm = hours >= 12 ? 'pm' : 'am';
-                                  hours = hours % 12;
-                                  hours = hours ? hours : 12; // Handle midnight
-                                  const minutes = String(date.getMinutes()).padStart(2, '0');
-                            
-                                  return `${day}/${month}/${year}, ${hours}:${minutes} ${ampm}`;
-                                 },
-                        
     // format date
     getDateString(date, format) {
+      
       var months = [
           "Jan",
           "Feb",
@@ -50,8 +26,8 @@ export default {
           "Oct",
           "Nov",
           "Dec",
-        ],
-        // var months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+        ]
+        var months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
         getPaddedComp = function (comp) {
           return parseInt(comp) < 10 ? "0" + comp : comp;
         },
@@ -97,7 +73,7 @@ export default {
 
     /***Method to create and download CSV File */
 
-    downloadUnicodeCSV(objArray) {
+    downloadUnicodeCSV(objArray,downloadValue) {
       var arr = typeof objArray !== "object" ? JSON.parse(objArray) : objArray;
       var str =
         `${Object.keys(arr[0])
@@ -113,8 +89,9 @@ export default {
       var element = document.createElement("a");
       element.href = "data:text/csv;charset=utf-8," + encodeURI(csvContent);
       element.target = "_blank";
-      element.download = "Document.csv";
+      element.download = `${downloadValue || 'document'}.csv`;
       element.click();
+      
     },
 
     ruppesFormat(num) {
@@ -130,8 +107,29 @@ export default {
 
     getDate() {
       const obj = { date };
-
       const date = new Date(obj.date * 1000);
+    },
+    keyPressAlphaNumeric(event) {
+      var inp = String.fromCharCode(event.keyCode);
+      if (event.keyCode != 13) {
+        if (/[a-zA-Z0-9]/.test(inp)) {
+          return true;
+        } else {
+          event.preventDefault();
+          return false;
+        }
+      }
+    },
+    formatDate(date) {
+      const day = String(date.getDate()).padStart(2, "0");
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const year = date.getFullYear();
+      let hours = date.getHours();
+      const ampm = hours >= 12 ? "pm" : "am";
+      hours = hours % 12;
+      hours = hours ? hours : 12; // Handle midnight
+      const minutes = String(date.getMinutes()).padStart(2, "0");
+      return `${day}/${month}/${year}, ${hours}:${minutes} ${ampm}`;
     },
   },
 };

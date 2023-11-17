@@ -9,14 +9,15 @@ const state = {
   contractMasterData: [],
   loader: false,
   exchangeData: [
-    "bcs_fo",
-    "MCX",
-    "NSE_COM",
-    "BSE_COM",
-    "NSE Indices",
-    "BSE Indices",
-    "MCX Indices",
+    "",
+    "nse_fo",
+    "nse_cm",
+    "cde_fo",
+    "bse_cm",
+    "nse_idx",
+    "bse_idx",
   ],
+  urlLogsData: [],
   resetdialogue:false,
 };
 
@@ -35,7 +36,6 @@ const mutations = {
   },
   setresetdialogue(state: any, payload: any) {
     state.resetdialogue= payload;
-   
   },
   setContractMasterData(state: any, payload: any) {
     state.contractMasterData = payload;
@@ -94,6 +94,13 @@ const actions = {
       .then((response) => {
         if (response.data) {
           commit("setDeactivatedSymbols", response.data.result);
+        }else{
+          notify({
+            group: "auth",
+            type: "success",
+            title: `${response.data.message}`,
+          });
+         // dispatch("getProductList");
         }
       })
       .catch(() => {})
@@ -118,11 +125,10 @@ const actions = {
   },
 
 
-  async resetCache({ commit } :any, jsonObj :any) {
+  async resetCache({ commit } :any, jsonObj :any) {    
    await httpService.resetCache(jsonObj)
    .then(response => {
         if (response.data) {
-        
           if (
             response.status == 200 &&
             response.data.message == "Contract loaded sucessfully"

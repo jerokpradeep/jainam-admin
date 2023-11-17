@@ -60,7 +60,7 @@
                     <path
                       d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
                   </svg>
-                  <svg v-on:click="resetFileValue('dp')" v-if="t1HoldFile != 'Select a File'"
+                  <svg v-on:click="resetFileValue('t1')" v-if="t1HoldFile != 'Select a File'"
                     class="w-8 h-9 stroke-blue-500 stroke-[2px] fill-none aria-hidden" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 22 20">
                     <path d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

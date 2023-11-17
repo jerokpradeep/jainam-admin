@@ -1,5 +1,5 @@
 <template>
-  <div class="p-5" v-if="tabCondition == false && activeUserLoginCondition == false">
+  <div class="p-5" v-if="tabCondition == false">
     <ul role="list" class="grid gap-6 grid-cols-2 sm:grid-cols-4 max-w-[1152px]">
       <li @click="getUserRecordDataFunc(i.source, id)"
         class="col-span-1 rounded-xl bg-white shadow h-[170px] p-4 cursor-pointer flex flex-col justify-center items-center"
@@ -13,10 +13,9 @@
         </div>
       </li>
     </ul>
-    <!-- Coming soon -->
   </div>
 
-  <div v-if="tabCondition == true && activeUserLoginCondition == false">
+  <!-- <div v-if="tabCondition == true && activeUserLoginCondition == false">
     <div class="p-5">
       <button v-on:click="tabCondition = false" type="button"
         class="bg-white-500 text-black border border-black h-10 w-[100px] cursor-pointer rounded">
@@ -31,18 +30,18 @@
       </button>
     </div>
     <div class="flex align-center justify-center mt-[200px]">
-      <h2>Uh..Oh...No data found!</h2>
+      <h2>No data found!</h2>
     </div>
-  </div>
-  <activeUserLoginCondition v-if="activeUserLoginCondition == true"></activeUserLoginCondition>
+  </div> -->
+  <usersListingTable v-if="tabCondition == false && activeUserLoginCondition == false"></usersListingTable>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { mapGetters } from "vuex";
-import activeUserLoginCondition from "./activeUserLoginCondition.vue";
+import { mapGetters, mapState } from "vuex";
+import usersListingTable from "./users-listing-table.vue";
 export default defineComponent({
-  components: { activeUserLoginCondition },
+  components: { usersListingTable },
   setup() {
     const tabCondition = ref(false);
     return { tabCondition };
@@ -65,14 +64,11 @@ export default defineComponent({
     },
     getUserRecordDataFunc(source: any, index: any) {
       this.$store.commit('dash/setActiveTab', index);
-
+      this.$store.commit('dash/setdownloadValue', source);
       this.$store.commit('dash/activeUserLoginCondition', true);
       if (source != '') {
         this.$store.dispatch("dash/getUserRecordData", source);
-
       }
-
-
     }
   },
   computed: {
@@ -80,12 +76,15 @@ export default defineComponent({
     ...mapGetters("dash", ["getTotalCount"]),
     ...mapGetters("dash", ["getUserRecordData"]),
     ...mapGetters("dash", ["activeUserLoginCondition"]),
+    ...mapState("dash", ['tab', 'downloadValue']),
   },
 
   async created() {
-
     await this.$store.dispatch("dash/getSeperateUserCount");
+  },
 
+  async mounted() {
+    this.$store.dispatch("dash/getUserRecordData", 'UniqueUser');
   },
 });
 </script>
